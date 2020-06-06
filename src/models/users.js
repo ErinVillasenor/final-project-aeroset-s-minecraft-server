@@ -112,6 +112,35 @@ async function updateUserById(id, user){
 
 module.exports.updateUserById = updateUserById;
 
+async function addUsersToCourse(courseid, userIds){
+    let courseInstance = await Course.findByPk(courseid);
+    let studentInstance = null;
+
+    userIds.forEach( (id) => {
+        studentInstance = await User.findByPk(id);
+        // Defined by Sequelize
+        courseInstance.addUser(studentInstance);
+    });
+
+    return courseInstance;
+}
+
+module.exports.addUsersToCourse = addUsersToCourse;
+
+async function removeUsersFromCourse(courseid, userIds){
+    let courseInstance = await Course.findByPk(courseid);
+    let studentInstance = null;
+
+    userIds.forEach( (id) => {
+        studentInstance = await User.findByPk(id);
+        // Defined by Sequelize
+        courseInstance.removeUser(studentInstance);
+    });
+
+    return courseInstance;
+}
+module.exports.removeUsersFromCourse = removeUsersFromCourse;
+
 
 // DELETE
 async function deleteUserById(id){

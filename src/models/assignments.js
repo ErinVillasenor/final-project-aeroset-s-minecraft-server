@@ -11,6 +11,7 @@ const { extractValidFields } = require("../lib/validation");
 
 // SCHEMA
 const AssignmentSchema = {
+    title: { required: true },
     points: { required: true },
     due: { required: true },
     courseid: { required: true },

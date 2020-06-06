@@ -8,9 +8,9 @@
 // ---- CONFIGURATION FOR SQL DATABASE ----
 
 const SQL_USER = process.env.SQL_USER || null;
-const SQL_PASSWORD = processs.env.SQL_PASSWORD || null;
-const SQL_DATABASE = processs.env.SQL_DATABASE || null;
-const SQL_HOSTNAME = processs.env.SQL_HOSTNAME || null;
+const SQL_PASSWORD = process.env.SQL_PASSWORD || null;
+const SQL_DATABASE = process.env.SQL_DATABASE || null;
+const SQL_HOSTNAME = process.env.SQL_HOSTNAME || null;
 const SQL_PORT = process.env.SQL_PORT || 3306;
 
 if(! (SQL_USER && SQL_PASSWORD && SQL_DATABASE && SQL_HOSTNAME)){
@@ -19,7 +19,7 @@ if(! (SQL_USER && SQL_PASSWORD && SQL_DATABASE && SQL_HOSTNAME)){
     process.exit(1);
 }
 
-const { Sequelize } = require("sequelize");
+const { Sequelize, DataTypes } = require("sequelize");
 const db = new Sequelize(SQL_DATABASE, SQL_USER, SQL_PASSWORD, {
     dialect: "mysql",
     host: SQL_HOSTNAME,
@@ -34,39 +34,39 @@ const db = new Sequelize(SQL_DATABASE, SQL_USER, SQL_PASSWORD, {
 
 const User = db.define('User', {
     name: {
-        type: Sequelize.STRING,
+        type: DataTypes.STRING,
         allowNull: false,
     },
     email: {
-        type: Sequelize.STRING,
+        type: DataTypes.STRING,
         allowNull: false,
         unique: true,
     },
     password: {
-        type: Sequelize.STRING,
+        type: DataTypes.STRING,
         allowNull: false,
     },
     role: {
-        type: Sequelize.ENUM("student", "instructor", "admin"),
+        type: DataTypes.ENUM("student", "instructor", "admin"),
         defaultValue: "student"
     }
 });
 
 const Course = db.define('Course', {
     subject: {
-        type: Sequelize.STRING,
+        type: DataTypes.STRING,
         allowNull: false,
     },
     number: {
-        type: Sequelize.INTEGER,
+        type: DataTypes.INTEGER,
         allowNull: false,
     },
     title: {
-        type: Sequelize.STRING,
+        type: DataTypes.STRING,
         allowNull: false,
     },
     term: {
-        type: Sequelize.STRING,
+        type: DataTypes.STRING,
         allowNull: false,
     }
 });
@@ -74,87 +74,81 @@ const Course = db.define('Course', {
 
 const Submission = db.define('Submission', {
     timestamp: {
-        type: Sequelize.DATE,
-        defaultValue: Sequelize.NOW,
+        type: DataTypes.DATE,
+        defaultValue: DataTypes.NOW,
     },
     file: {
-        type: Sequelize.STRING,
+        type: DataTypes.STRING,
         allowNull: false,
     }
 });
 
 const Assignment = db.define('Assignment', {
+    title: {
+        type: DataTypes.STRING,
+        allowNull: false,
+    },
     points: {
-        type: Sequelize.INTEGER,
+        type: DataTypes.INTEGER,
         allowNull: false,
     },
     due: {
-        type: Sequelize.DATE,
-        allowNull: false
+        type: DataTypes.DATE,
+        allowNull: false,
     }
 });
 
-
-// Relationships
-
 // Course To Student Definition
-User.belongsToMany('Course', 
-{
+User.belongsToMany(Course, {
     as: "courses",
     through: "CourseToStudent",    
 });
 
-Course.belongsToMany('User', 
-{ 
+Course.belongsToMany(User, { 
     as: "students",
     through: "CourseToStudent",
 });
 
 
 // Instructor Ownership
-Course.belongsTo('User',
-{
-    as: "instructor",
-    foreignKey: "instructorid",
+
+User.hasMany(Course, {
+    as: "teaching",
+    //foreignKey: "instructorid",
 });
 
-User.hasMany('Course', {
-    foreignKey: "instructorid",
+Course.belongsTo(User, {
+    as: "instructor"
 });
 
 // User has many Submissions
 
-Submission.belongsTo('User', {
-    foreignKey: "studentid",
-});
-
-User.hasMany('Submission', {
+User.hasMany(Submission, {
     foreginKey: "studentid",
 });
 
+Submission.belongsTo(User, {});
+
 // Assignment has many submissions
 
-Assignment.hasMany("Submission", {
+Assignment.hasMany(Submission, {
     foreginKey: "assignmentid",
     onDelete: "CASCADE",
 });
 
-Submission.belongsTo("Assignment", {
-    foreginKey: "assignmentid",
+Submission.belongsTo(Assignment, {
     onDelete: "CASCADE"
 });
 
 
 // Courses Have Many Assignment
 
-Course.hasMany("Assignment", {
+Course.hasMany(Assignment, {
     foreginKey: "courseid",
     onDelete: "CASCADE"
 });
 
-Assignment.belongsTo("Course", {
-    foreignKey: "courseid"
-});
+Assignment.belongsTo(Course, {});
 
 // Sync it all!
 async function initDB(){

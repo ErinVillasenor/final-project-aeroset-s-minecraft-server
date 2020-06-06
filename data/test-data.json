@@ -1,0 +1,128 @@
+{
+    "users": [
+        {
+            "name": "Sky Fortress",
+            "email": "help@orst.edu",
+            "password": "hunter2",
+            "role": "admin"
+        },
+        {
+            "name": "Some Kid",
+            "email": "derp@lil.com",
+            "password": "hunter2",
+            "role": "student"
+        },
+        {
+            "name": "Yellsalot Dree",
+            "email": "tweet@me.systems",
+            "password": "hunter2",
+            "role": "student"
+        },
+        {
+            "name": "Mecha Salt",
+            "email": "fasa@studios.derp",
+            "password": "hunter2",
+            "role": "student"
+        },
+        {
+            "name": "Recon Cillia",
+            "email": "tion@some.time",
+            "password": "hunter2",
+            "role": "student"
+        },
+        {
+            "name": "Relly Helpful",
+            "email": "test@sup.org",
+            "password": "hunter2",
+            "role": "student"
+        },
+        {
+            "name": "Teege Erspet",
+            "email": "hess@rocks.out",
+            "password": "hunter2",
+            "role": "student"
+        },
+        {
+            "name": "Poor Professor",
+            "email": "need@soup.in",
+            "password": "hunter2",
+            "role": "instructor"
+        },
+        {
+            "name": "Rich Professor",
+            "email": "need@love.sick",
+            "password": "hunter2",
+            "role": "instructor"
+        }
+    ],
+    "courses": [
+        {
+            "subject": "cs",
+            "number": 162,
+            "title": "How to Segfault 101",
+            "term": "sp19",
+            "instructorid": 7
+        },
+        {
+            "subject": "ece",
+            "number": 333,
+            "title": "Why YOU Need a Masters",
+            "term": "sp20",
+            "instructorid": 8
+        },
+        {
+            "subject": "ph",
+            "number": 213,
+            "title": "Rainbows and Unicorns",
+            "term": "f19",
+            "instructorid": 7
+        },
+        {
+            "subject": "cs",
+            "number": 493,
+            "title": "Cloud Application Development",
+            "term": "sp20",
+            "instructorid": 8
+        }
+    ],
+    "assignments": [
+        {
+            "title": "Introduce Yourself",
+            "points": 100,
+            "due": "2019-06-14T17:00:00-07:00",
+            "courseid": 2
+        },
+        {
+            "title": "Beg Professors for Sleep",
+            "points": 1000,
+            "due": "2020-06-06T17:00:00-07:00",
+            "courseid": 1
+        },
+        {
+            "title": "Draw a Freakin FBD",
+            "points": 1,
+            "due": "1990-06-06T17:00:00-07:00",
+            "courseid": 2
+        }
+    ],
+    "submissions": [
+        {
+            "assignmentid": 1,
+            "studentid": 1,
+            "timestamp": "2020-06-06T17:00:00-07:00",
+            "file": "f3e22222221ad"
+        },
+        {
+            "assignmentid": 1,
+            "studentid": 2,
+            "timestamp": "2020-06-06T17:00:01-10:00",
+            "file": "f3e22222221af"
+        },
+        {
+            "assignmentid": 1,
+            "studentid": 3,
+            "timestamp": "2020-06-06T17:00:01-12:00",
+            "file": "f3e22343431ad"
+        }
+    ]
+}
