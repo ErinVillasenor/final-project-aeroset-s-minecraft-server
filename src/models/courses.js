@@ -46,7 +46,7 @@ module.exports.readCourseById = readCourseById;
 
 // CREATE
 async function createCourse(course){
-    let insert = extractValidFields(CourseSchema);
+    let insert = extractValidFields(course, CourseSchema);
 
     const res = await Course.create(insert);
 
@@ -58,9 +58,12 @@ module.exports.createCourse = createCourse;
 
 // Update
 async function updateCourseById(id, course){
-    let update = extractValidfields(course, CourseSchema);
+    let update = extractValidFields(course, CourseSchema);
 
     let courseInstance = await Course.findByPk(id);
+    if(courseInstance === null){
+        return null;
+    }
 
     Object.keys(CourseSchema).forEach((field) => {
         courseInstance[field] = update[field] || courseInstance[field];
@@ -70,11 +73,15 @@ async function updateCourseById(id, course){
     return courseInstance;
 }
 
-module.exports.updateCoursebyId = updateCourseById;
+module.exports.updateCourseById = updateCourseById;
 
 // Not super necessary, but fun
 async function updateCourseInstructorById(courseid, instructorid){
     let courseInstance = await Course.findByPk(courseid);
+    if(courseInstance === null){
+        return null;
+    }
+
     let userInstance = await User.findByPk(instructorid);
 
     await courseInstance.setInstructor(userInstance);
@@ -87,10 +94,13 @@ module.exports.updateCourseInstructorById = updateCourseInstructorById;
 // DELETE
 async function deleteCourseById(id){
     let courseInstance = await Course.findByPk(id);
+    if(courseInstance === null){
+        return null;
+    }
 
-    await scourseInstance.destroy();
+    await courseInstance.destroy();
 
     return courseInstance;
 }
 
-module.exports.deleteCoursebyId = deleteCourseById;
+module.exports.deleteCourseById = deleteCourseById;

@@ -116,6 +116,9 @@ async function updateUserById(id, user){
     let update = extractValidFields(user, UserSchema);
 
     let userInstance = await User.findByPk(id);
+    if(userInstance === null){
+        return null;
+    }
 
     Object.keys(UserSchema).forEach((field) => {
         userInstance[field] = update[field] || userInstance[field];
@@ -129,6 +132,10 @@ module.exports.updateUserById = updateUserById;
 
 async function addStudentsToCourse(courseid, userIds){
     let courseInstance = await Course.findByPk(courseid);
+    if(courseInstance === null){
+        return null;
+    }
+
     let studentInstance = null;
 
     for(let i = 0; i < userIds.length; i ++){
@@ -145,6 +152,10 @@ module.exports.addStudentsToCourse = addStudentsToCourse;
 
 async function removeStudentsFromCourse(courseid, userIds){
     let courseInstance = await Course.findByPk(courseid);
+    if(courseInstance === null){
+        return null;
+    }
+
     let studentInstance = null;
     let id = 0;
 
@@ -161,6 +172,9 @@ module.exports.removeStudentsFromCourse = removeStudentsFromCourse;
 
 async function addCoursesToInstructor(instructorid, courseids){
     let userInstance = await User.findByPk(instructorid);
+    if(userInstance === null){
+        return null;
+    }
 
     let courseInstance = null;
     let id = 0;

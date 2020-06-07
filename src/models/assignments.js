@@ -45,15 +45,13 @@ async function readAssignmentById(id){
 module.exports.readAssignmentById = readAssignmentById;
 
 async function readAssignmentsByCourseId(id){
-    const label = "IAmHappyToWorkWithSuchGreatPeople"
     const res = await Course.findByPk(id, {
         include: {
-            model: Assignment,
-            as: label,
+            model: Assignment
         },
     });
 
-    return res[label];
+    return res["Assignments"];
 }
 
 module.exports.readAssignmentsByCourseId = readAssignmentsByCourseId;
@@ -69,9 +67,12 @@ module.exports.createAssignment = createAssignment;
 
 // UPDATE -- Works For Patch and Put
 async function updateAssignmentById(id, assignment){
-    let update = extractValidfields(assignment, AssignmentSchema);
+    let update = extractValidFields(assignment, AssignmentSchema);
 
     let assignmentInstance = await Assignment.findByPk(id);
+    if(assignmentInstance === null){
+        return null;
+    }
 
     Object.keys(AssignmentSchema).forEach((field) => {
         assignmentInstance[field] = update[field] || assignmentInstance[field];
@@ -87,6 +88,10 @@ module.exports.updateAssignmentById = updateAssignmentById;
 // DELETE
 async function deleteAssignmentById(id){
     let assignmentInstance = await Assignment.findByPk(id);
+    if(assignmentInstance === null){
+        return null;
+    }
+
     await assignmentInstance.destroy();
 
     return assignmentInstance;

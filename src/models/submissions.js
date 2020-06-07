@@ -42,22 +42,18 @@ async function readSubmissionById(id){
 module.exports.readSubmissionById = readSubmissionById;
 
 
-async function readSubmissionByAssignmentId(assignmentid){
+async function readSubmissionsByAssignmentId(assignmentid){
     const res = await Assignment.findByPk(assignmentid,{
-        include: {
-            Submission,
-            as: "submissions",
-        }
+        include: Submission
     });
 
-    return res["submissions"];
+    return res["Submissions"];
 }
 
-module.exports.readSubmissionByAssignmentId = readSubmissionByAssignmentId;
-
+module.exports.readSubmissionsByAssignmentId = readSubmissionsByAssignmentId;
 
 // Create
-async function creatSubmission(submission){
+async function createSubmission(submission){
     let insert = extractValidFields(submission, SubmissionSchema);
 
     const res = await Submission.create(insert);
@@ -65,13 +61,16 @@ async function creatSubmission(submission){
     return res;
 }
 
-module.exports.creatSubmission = creatSubmission;
+module.exports.createSubmission = createSubmission;
 
 // Update
 async function updateSubmission(id, submission){
-    let update = extractValidfields(submission, UserSchema);
+    let update = extractValidFields(submission, SubmissionSchema);
 
     let submissionInstance = await Submission.findByPk(id);
+    if(submissionInstance === null){
+        return null;
+    }
 
     Object.keys(SubmissionSchema).forEach((field) => {
         submissionInstance[field] = update[field] || submissionInstance[field];
@@ -87,6 +86,9 @@ module.exports.updateSubmission = updateSubmission;
 // Delete
 async function deleteSubmission(id){
     let submissionInstance = await Submission.findByPk(id);
+    if(submissionInstance === null){
+        return null;
+    }
 
     await submissionInstance.destroy();
 

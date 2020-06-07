@@ -101,7 +101,7 @@ const Assignment = db.define('Assignment', {
 
 // Course To Student Definition
 User.belongsToMany(Course, {
-    through: "CourseToStudent",    
+    through: "CourseToStudent",
 });
 
 Course.belongsToMany(User, { 
@@ -113,43 +113,50 @@ Course.belongsToMany(User, {
 // Instructor Ownership
 
 User.hasMany(Course, {
-    as: "teaching",
-    //foreignKey: "instructorid",
-    // as instructor below takes care of this
+    as: "instructor",
+    foreignKey: "instructorid",
+    onDelete: "CASCADE",
+    constraints: true,
 });
-
 Course.belongsTo(User, {
-    as: "instructor"
+    as: "instructor",
+    foreignKey: "instructorid",
 });
 
 // User has many Submissions
 
 User.hasMany(Submission, {
-    foreginKey: "studentid",
+    foreignKey: "studentid",
+    onDelete: "CASCADE",
+    constraints: true,
 });
-
-Submission.belongsTo(User, {});
+Submission.belongsTo(User, {
+    foreignKey: "studentid",
+});
 
 // Assignment has many submissions
 
 Assignment.hasMany(Submission, {
-    foreginKey: "assignmentid",
+    foreignKey: "assignmentid",
     onDelete: "CASCADE",
+    constraints: true,
 });
-
 Submission.belongsTo(Assignment, {
-    onDelete: "CASCADE"
+    foreignKey: "assignmentid",
 });
 
 
 // Courses Have Many Assignment
 
 Course.hasMany(Assignment, {
-    foreginKey: "courseid",
-    onDelete: "CASCADE"
+    foreignKey: "courseid",
+    onDelete: "CASCADE",
+    constraints: true,
 });
-
-Assignment.belongsTo(Course, {});
+Assignment.belongsTo(Course, {
+    as: "course",
+    foreignKey: "courseid",
+});
 
 // Sync it all!
 async function initDB(){
