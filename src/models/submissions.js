@@ -74,7 +74,7 @@ async function updateSubmission(id, submission){
     let submissionInstance = await Submission.findByPk(id);
 
     Object.keys(SubmissionSchema).forEach((field) => {
-        submissionIntance[field] = update[field];
+        submissionInstance[field] = update[field] || submissionInstance[field];
     });
 
     await submissionInstance.save();

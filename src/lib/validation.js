@@ -24,7 +24,7 @@ module.exports.validateAgainstSchema = validateAgainstSchema;
 // Returns an object with only valid fields
 function extractValidFields(obj, schema){
     let res = {}
-    Object.keys(shema).forEach((field) => {
+    Object.keys(schema).forEach((field) => {
         res[field] = obj[field];
         // schema[field] may be undefined
     });

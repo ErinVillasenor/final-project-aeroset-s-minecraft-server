@@ -5,7 +5,7 @@
  * 
  */
 
-const { Course } = require("./setup-db");
+const { Course, User } = require("./setup-db");
 const { extractValidFields } = require("../lib/validation");
 
 // Schema
@@ -63,7 +63,7 @@ async function updateCourseById(id, course){
     let courseInstance = await Course.findByPk(id);
 
     Object.keys(CourseSchema).forEach((field) => {
-        courseIntance[field] = update[field];
+        courseInstance[field] = update[field] || courseInstance[field];
     });
 
     await courseInstance.save();
@@ -71,6 +71,18 @@ async function updateCourseById(id, course){
 }
 
 module.exports.updateCoursebyId = updateCourseById;
+
+// Not super necessary, but fun
+async function updateCourseInstructorById(courseid, instructorid){
+    let courseInstance = await Course.findByPk(courseid);
+    let userInstance = await User.findByPk(instructorid);
+
+    await courseInstance.setInstructor(userInstance);
+
+    return courseInstance;
+}
+
+module.exports.updateCourseInstructorById = updateCourseInstructorById;
 
 // DELETE
 async function deleteCourseById(id){

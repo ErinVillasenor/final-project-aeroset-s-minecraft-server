@@ -20,6 +20,8 @@ const UserSchema = {
 module.exports.UserSchema = UserSchema
 
 // READ
+// Limit -- Number of Users
+// offset -- Number of Users to paginated
 async function readUsers(limit, offset){
     if(limit === undefined){
         const res = await User.findAll();
@@ -72,18 +74,31 @@ async function readUserByEmail(email){
 
 module.exports.readUserByEmail = readUserByEmail;
 
-async function readUsersByCourseId(courseid){
+async function readStudentsByCourseId(courseid){
     const res = await Course.findByPk(courseid, {
         include: {
             model: User,
-            as: "students"
+            as: "student"
         }
     });
 
-    return res;
+    return res.student;
 }
 
-module.exports.readUsersByCourseId = readUsersByCourseId;
+module.exports.readStudentsByCourseId = readStudentsByCourseId;
+
+async function readInstructorByCourseId(courseid){
+    const res = await Course.findByPk(courseid, {
+        include: {
+            model: User,
+            as: "instructor"
+        }
+    });
+
+    return res.instructor;
+}
+
+module.exports.readInstructorByCourseId = readInstructorByCourseId;
 
 // CREATE
 async function createUser(user){
@@ -98,12 +113,12 @@ module.exports.createUser = createUser;
 
 // UPDATE -- Works For Patch and Put
 async function updateUserById(id, user){
-    let update = extractValidfields(user, UserSchema);
+    let update = extractValidFields(user, UserSchema);
 
     let userInstance = await User.findByPk(id);
 
     Object.keys(UserSchema).forEach((field) => {
-        userIntance[field] = update[field];
+        userInstance[field] = update[field] || userInstance[field];
     });
 
     await userInstance.save();
@@ -112,7 +127,7 @@ async function updateUserById(id, user){
 
 module.exports.updateUserById = updateUserById;
 
-async function addUsersToCourse(courseid, userIds){
+async function addStudentsToCourse(courseid, userIds){
     let courseInstance = await Course.findByPk(courseid);
     let studentInstance = null;
 
@@ -120,15 +135,15 @@ async function addUsersToCourse(courseid, userIds){
         id = userIds[i];
         studentInstance = await User.findByPk(id);
         // Defined by Sequelize
-        courseInstance.addUser(studentInstance);
+        await courseInstance.addStudent(studentInstance);
     }
 
     return courseInstance;
 }
 
-module.exports.addUsersToCourse = addUsersToCourse;
+module.exports.addStudentsToCourse = addStudentsToCourse;
 
-async function removeUsersFromCourse(courseid, userIds){
+async function removeStudentsFromCourse(courseid, userIds){
     let courseInstance = await Course.findByPk(courseid);
     let studentInstance = null;
     let id = 0;
@@ -137,13 +152,30 @@ async function removeUsersFromCourse(courseid, userIds){
         id = userIds[i];
         studentInstance = await User.findByPk(id);
         // Defined by Sequelize
-        courseInstance.removeUser(studentInstance);
+        await courseInstance.removeStudent(studentInstance);
     }
 
     return courseInstance;
 }
-module.exports.removeUsersFromCourse = removeUsersFromCourse;
+module.exports.removeStudentsFromCourse = removeStudentsFromCourse;
 
+async function addCoursesToInstructor(instructorid, courseids){
+    let userInstance = await User.findByPk(instructorid);
+
+    let courseInstance = null;
+    let id = 0;
+    
+    for(let i = 0; i < courseids.length; i ++){
+        id = courseids[i];
+        courseInstance = await Course.findByPk(id);
+        // Defined by Sequelize
+        await courseInstance.setInstructor(userInstance);
+    }
+
+    return userInstance;
+}
+
+module.exports.addCoursesToInstructor = addCoursesToInstructor;
 
 // DELETE
 async function deleteUserById(id){

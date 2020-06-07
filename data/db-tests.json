@@ -12,5 +12,80 @@
         "function" : "readUserById",
         "args": [1],
         "expected" : ""
+    },
+    {
+        "name" : "Some Users",
+        "module" : "Users",
+        "function" : "readUsers",
+        "args": [3, 3]
+    },
+    {
+        "name" : "Read a User By Email",
+        "module" : "Users",
+        "function" : "readUserByEmail",
+        "args": ["tweet@me.systems"]
+    },
+    {
+        "name" : "Add Users to Course",
+        "module" : "Users",
+        "function" : "addStudentsToCourse",
+        "args" : [1, [1, 2, 3]]
+    },
+    {
+        "name" : "Read Users By Course Id",
+        "module" : "Users",
+        "function" : "readStudentsByCourseId",
+        "args" : [1]
+    },
+    {
+        "name" : "Remove All Users From the Course",
+        "module" : "Users",
+        "function" : "removeStudentsFromCourse",
+        "args" : [1, [1, 2, 3]] 
+    },
+    {
+        "name" : "Create New User",
+        "module" : "Users",
+        "function": "createUser",
+        "args" : [{
+            "name": "T Swizzle",
+            "email": "T@duhSwizz.com",
+            "password": "hunter2",
+            "role": "student"
+        }]
+    },
+    {
+        "name" : "Delete User",
+        "module" : "Users",
+        "function" : "deleteUserById",
+        "args" : [10]
+    },
+    {
+        "name" : "Patch User Name",
+        "module" : "Users",
+        "function" : "updateUserById",
+        "args" : [2, {
+            "name": "T Swizzle"
+        }]
+    },
+    {
+        "name": "Patch User Name Back",
+        "module" : "Users",
+        "function" : "updateUserById",
+        "args" : [2, {
+            "name": "Some Kid"
+        }]
+    },
+    {
+        "name": "Set an Instructor to the Course",
+        "module" : "Users",
+        "function" : "addCoursesToInstructor",
+        "args" : [8, [2]]
+    },
+    {
+        "name": "Unset a User to the Course",
+        "module" : "Users",
+        "function" : "addCoursesToInstructor",
+        "args" : [9, [2]]
     }
 ]

@@ -61,28 +61,28 @@
             "number": 162,
             "title": "How to Segfault 101",
             "term": "sp19",
-            "instructorid": 7
+            "instructorid": 8
         },
         {
             "subject": "ece",
             "number": 333,
             "title": "Why YOU Need a Masters",
             "term": "sp20",
-            "instructorid": 8
+            "instructorid": 9
         },
         {
             "subject": "ph",
             "number": 213,
             "title": "Rainbows and Unicorns",
             "term": "f19",
-            "instructorid": 7
+            "instructorid": 8
         },
         {
             "subject": "cs",
             "number": 493,
             "title": "Cloud Application Development",
             "term": "sp20",
-            "instructorid": 8
+            "instructorid": 9
         }
     ],
     "assignments": [

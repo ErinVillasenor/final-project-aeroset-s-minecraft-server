@@ -101,12 +101,11 @@ const Assignment = db.define('Assignment', {
 
 // Course To Student Definition
 User.belongsToMany(Course, {
-    as: "courses",
     through: "CourseToStudent",    
 });
 
 Course.belongsToMany(User, { 
-    as: "students",
+    as: "student",
     through: "CourseToStudent",
 });
 
@@ -116,6 +115,7 @@ Course.belongsToMany(User, {
 User.hasMany(Course, {
     as: "teaching",
     //foreignKey: "instructorid",
+    // as instructor below takes care of this
 });
 
 Course.belongsTo(User, {

@@ -19,12 +19,12 @@ async function startTests(){
     // Setup Stuff
     await populateDatabase(); 
 
-    console.log("When the server has started.\n\t\t Type a yes like response");
+    console.log("\n\n=-= When the server has started.\n\t\t Type a yes like response");
     await sleep(5000);
     // Start Server
     require("./index");
 
-    const shouldTest = await promptForYes("Ready to Start?");
+    const shouldTest = await promptForYes("Test Database?");
     if(shouldTest){
         await testDatabase();
     }
@@ -37,6 +37,6 @@ try{
 } catch(err) {
     console.log("Tests Failed!");
     console.error(err);
-    process.exit(1);
+    process.exit(1)
 }
 

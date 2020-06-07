@@ -74,7 +74,7 @@ async function updateAssignmentById(id, assignment){
     let assignmentInstance = await Assignment.findByPk(id);
 
     Object.keys(AssignmentSchema).forEach((field) => {
-        assignmentIntance[field] = update[field];
+        assignmentInstance[field] = update[field] || assignmentInstance[field];
     });
 
     await assignmentInstance.save();

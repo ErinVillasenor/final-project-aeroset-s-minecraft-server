@@ -69,7 +69,8 @@ async function testDatabase(){
                 let module = DBModels[test.module];
                 let res = await module[test.function](test.args[0], test.args[1], test.args[2], test.args[3]);
                 console.log("== Test Ran and Logged!");
-                console.log(test.name + "\n");
+                console.log(test.name);
+                console.log("number: " + index + "\n\n");
                 loggedTests.push({
                     number: index,
                     name: test.name,
@@ -82,7 +83,10 @@ async function testDatabase(){
             }
         }
     }catch(err){
-        return err;
+        console.error("== Error occurred when testing Database");
+
+        console.error(err);
+        process.exit(1);
     }
 }
 
