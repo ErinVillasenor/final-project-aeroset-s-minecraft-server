@@ -1,0 +1,368 @@
+[
+    {
+        "name" : "All Users",
+        "module" : "Users",
+        "function" : "readUsers",
+        "args": [],
+        "expected" : ""
+    },
+    {
+        "name" : "User Specific",
+        "module" : "Users",
+        "function" : "readUserById",
+        "args": [1],
+        "expected" : ""
+    },
+    {
+        "name" : "Some Users",
+        "module" : "Users",
+        "function" : "readUsers",
+        "args": [3, 3]
+    },
+    {
+        "name" : "Read a User By Email",
+        "module" : "Users",
+        "function" : "readUserByEmail",
+        "args": ["tweet@me.systems"]
+    },
+    {
+        "name" : "Add Users to Course",
+        "module" : "Users",
+        "function" : "addStudentsToCourse",
+        "args" : [1, [1, 2, 3]]
+    },
+    {
+        "name" : "Read Users By Course Id",
+        "module" : "Users",
+        "function" : "readStudentsByCourseId",
+        "args" : [1]
+    },
+    {
+        "name" : "Remove All Users From the Course",
+        "module" : "Users",
+        "function" : "removeStudentsFromCourse",
+        "args" : [1, [1, 2, 3]] 
+    },
+    {
+        "name" : "Create New User",
+        "module" : "Users",
+        "function": "createUser",
+        "args" : [{
+            "name": "T Swizzle",
+            "email": "T@duhSwizz.com",
+            "password": "hunter2",
+            "role": "student"
+        }]
+    },
+    {
+        "name" : "Delete User",
+        "module" : "Users",
+        "function" : "deleteUserById",
+        "args" : [10]
+    },
+    {
+        "name" : "Patch User Name",
+        "module" : "Users",
+        "function" : "updateUserById",
+        "args" : [2, {
+            "name": "T Swizzle"
+        }]
+    },
+    {
+        "name": "Patch User Name Back",
+        "module" : "Users",
+        "function" : "updateUserById",
+        "args" : [2, {
+            "name": "Some Kid"
+        }]
+    },
+    {
+        "name": "Set an Instructor to the Course",
+        "module" : "Users",
+        "function" : "addCoursesToInstructor",
+        "args" : [8, [2]]
+    },
+    {
+        "name": "Unset a User to the Course",
+        "module" : "Users",
+        "function" : "addCoursesToInstructor",
+        "args" : [9, [2]]
+    },
+    {
+        "name": "Read all the courses",
+        "module" : "Courses",
+        "function" : "readCourses",
+        "args": []
+    },
+    {
+        "name": "Read a Specific Course",
+        "module": "Courses",
+        "function" : "readCourseById",
+        "args": [2]
+    },
+    {
+        "name": "Create a New Course",
+        "module": "Courses",
+        "function": "createCourse",
+        "args": [{
+            "subject": "cs",
+            "number": 375,
+            "title": "Battle Bots",
+            "term": "w17",
+            "instructorid": 8
+        }]
+    },
+    {
+        "name": "Update that specific course",
+        "module": "Courses",
+        "function": "updateCourseById",
+        "args": [2, {
+            "subject": "ece",
+            "number": 363,
+            "title": "Why YOU Need a Doctorate",
+            "term": "sp21",
+            "instructorid": 8
+        }]
+    },
+    {
+        "name": "Update that specific course back",
+        "module": "Courses",
+        "function": "updateCourseById",
+        "args": [2, {
+            "subject": "ece",
+            "number": 333,
+            "title": "Why YOU Need a Masters",
+            "term": "sp20",
+            "instructorid": 9
+        }]
+    },
+    {
+        "name": "Update The Course by ids",
+        "module": "Courses",
+        "function": "updateCourseInstructorById",
+        "args": [5, 9]
+    },
+    {
+        "name": "Delete the Course Previously Created",
+        "module": "Courses",
+        "function": "deleteCourseById",
+        "args": [5]
+    },
+    {
+        "name": "Read All Assignments",
+        "module": "Assignments",
+        "function": "readAssignments",
+        "args": []
+    },
+    {
+        "name": "Read a specific Assignment",
+        "module": "Assignments",
+        "function": "readAssignmentById",
+        "args":[1]
+    },
+    {
+        "name": "Read Assignments By CourseId",
+        "module": "Assignments",
+        "function": "readAssignmentById",
+        "args": [2]
+    },
+    {
+        "name": "Create a new Assignment",
+        "module": "Assignments",
+        "function": "createAssignment",
+        "args": [{
+            "title": "Accidental Assignment",
+            "points": 100,
+            "due": "2017-06-14T17:00:00-07:00",
+            "courseid": 2
+        }]
+    },
+    {
+        "name": "Update Assignment title",
+        "module": "Assignments",
+        "function": "updateAssignmentById",
+        "args": [4, {
+            "title": "Actual Assignment"
+        }]
+    },
+    {
+        "name": "Delete the assignment created and editted",
+        "module": "Assignments",
+        "function": "deleteAssignmentById",
+        "args": [4]
+    },
+    {
+        "name": "Read All Submissions",
+        "module": "Submissions",
+        "function": "readSubmissions",
+        "args": []
+    },
+    {
+        "name": "Read Submission By Id",
+        "module": "Submissions",
+        "function": "readSubmissionById",
+        "args": [1]
+    },
+    {
+        "name": "Read Submissions By Assignment Id",
+        "module": "Submissions",
+        "function": "readSubmissionsByAssignmentId",
+        "args": [2]
+    },
+    {
+        "name": "Create A Submission",
+        "module": "Submissions",
+        "function": "createSubmission",
+        "args": [{
+            "assignmentid": 1,
+            "studentid": 1,
+            "timestamp": "2020-07-06T17:00:00-07:00",
+            "file": "f3e545451ad"
+        }]
+    },
+    {
+        "name": "Update A Submission",
+        "module": "Submissions",
+        "function": "updateSubmission",
+        "args": [4, {
+            "assignmentid": 1,
+            "studentid": 2,
+            "timestamp": "2020-07-06T17:00:00-07:00",
+            "file": "f3e545451ad"
+        }]
+    },
+    {
+        "name": "Delete previously created submission",
+        "module": "Submissions",
+        "function": "deleteSubmission",
+        "args": [4]
+    },
+    {
+        "name": "Create An Awesome Course",
+        "module": "Courses",
+        "function": "createCourse",
+        "args": [{
+            "subject": "cs",
+            "number": 493,
+            "title": "Cloud Application Development",
+            "term": "sp20",
+            "instructorid": 9
+        }]
+    },
+    {
+        "name": "Attach a new Assignment to that course",
+        "module": "Assignments",
+        "function": "createAssignment",
+        "args": [{
+            "title": "Introduce Yourself",
+            "points": 100,
+            "due": "2017-06-14T17:00:00-07:00",
+            "courseid": 6
+        }]
+    },
+    {
+        "name": "Create A Submission For The Assignment",
+        "module": "Submissions",
+        "function": "createSubmission",
+        "args": [{
+            "assignmentid": 5,
+            "studentid": 7,
+            "timestamp": "2020-07-06T17:00:00-07:00",
+            "file": "f3e645461ad"
+        }]
+    },
+    {
+        "name": "Add the students to the course",
+        "module": "Users",
+        "function": "addStudentsToCourse",
+        "args": [6, [4, 7]]
+    },
+    {
+        "name": "Remove The Course to Check Cascaded",
+        "module": "Courses",
+        "function": "deleteCourseById",
+        "args": [6]
+    },
+    {
+        "name": "Read User that didn't delete",
+        "module": "Users",
+        "function": "readUserById",
+        "args": [7]
+    },
+    {
+        "name": "Read Submission That Should be deleted.",
+        "module": "Submissions",
+        "function": "readSubmissionById",
+        "args": [5]
+    },
+    {
+        "name": "Read Assignment That Should be deleted.",
+        "module": "Assignments",
+        "function": "readAssignmentById",
+        "args": [5]
+    },
+    {
+        "name": "Read Teacher That Should Still exist",
+        "module": "Users",
+        "function": "readUserById",
+        "args": [9]
+    },
+    {
+        "name": "Finally Create a Teacher",
+        "module": "Users",
+        "function": "createUser",
+        "args": [{
+            "name": "Okay Professor",
+            "email": "need@live.sick",
+            "password": "hunter2",
+            "role": "instructor"
+        }]
+    },
+    {
+        "name": "Create A Course For This Teacher",
+        "module": "Courses",
+        "function": "createCourse",
+        "args": [{
+            "subject": "cs",
+            "number": 163,
+            "title": "How to Debug",
+            "term": "sp19",
+            "instructorid": 11
+        }]
+    },
+    {
+        "name": "Create a new Assignment for this temp Class",
+        "module": "Assignments",
+        "function": "createAssignment",
+        "args": [{
+            "title": "Introduce Yourself",
+            "points": 100,
+            "due": "2019-06-14T17:00:00-07:00",
+            "courseid": 7
+        }]
+    },
+    {
+        "name": "Delete Them All!!!",
+        "module": "Users",
+        "function": "deleteUserById",
+        "args": [11]
+    },
+    {
+        "name": "Assignment Should Be Gone!",
+        "module": "Assignments",
+        "function": "readAssignmentById",
+        "args": [6]
+    },
+    {
+        "name": "Course Should Be Gone Too!",
+        "module": "Courses",
+        "function": "readCourseById",
+        "args": [7]
+    },
+    {
+        "name": "Read Users Out One Last Time For Fun",
+        "module": "Users",
+        "function": "readUsers",
+        "args": []
+    }
+]

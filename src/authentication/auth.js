@@ -71,3 +71,5 @@ for(let i = 0; i < blacklist.length; i ++){
     // router.all might need to be replaced
     router.all(blacklist[i], check_for_ownership, check_for_admin, require_privaledge);
 }
+
+module.exports = router;

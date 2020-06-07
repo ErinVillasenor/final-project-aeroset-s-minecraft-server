@@ -26,7 +26,7 @@ app.use(express.json());
 //------------------------------------------------
 
 // Authentication
-const auth = require("src/authentication/auth.js");
+const auth = require("./src/authentication/auth.js");
 app.use("/", auth);
 
 
@@ -46,16 +46,23 @@ if(PRODUCTION_MODE !== false){
 }
 
 // Routes
-const routes = require("src/api/index.js");
+const routes = require("./src/api/index.js");
 app.use("/", routes);
 
 // TURN OTHER BLOCKS ON HERE!
 // i.e
-// - SQL
+// - SQL ./
 // - MongoDB
 // - Stream Service (https://nodejs.org/api/stream.html)
 
+const { initDBCallback } = require("./src/models/setup-db");
+
 // Start Listening!
-app.listen(NODE_PORT, () => {
-    console.log("== Listening on Port 8080");
+
+
+
+initDBCallback(() => {
+    app.listen(NODE_PORT, () => {
+        console.log("== Listening on Port 8080");
+    });
 });
