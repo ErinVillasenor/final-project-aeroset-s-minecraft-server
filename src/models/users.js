@@ -116,11 +116,12 @@ async function addUsersToCourse(courseid, userIds){
     let courseInstance = await Course.findByPk(courseid);
     let studentInstance = null;
 
-    userIds.forEach( (id) => {
+    for(let i = 0; i < userIds.length; i ++){
+        id = userIds[i];
         studentInstance = await User.findByPk(id);
         // Defined by Sequelize
         courseInstance.addUser(studentInstance);
-    });
+    }
 
     return courseInstance;
 }
@@ -130,12 +131,14 @@ module.exports.addUsersToCourse = addUsersToCourse;
 async function removeUsersFromCourse(courseid, userIds){
     let courseInstance = await Course.findByPk(courseid);
     let studentInstance = null;
+    let id = 0;
 
-    userIds.forEach( (id) => {
+    for(let i = 0; i < userIds.length; i ++){
+        id = userIds[i];
         studentInstance = await User.findByPk(id);
         // Defined by Sequelize
         courseInstance.removeUser(studentInstance);
-    });
+    }
 
     return courseInstance;
 }

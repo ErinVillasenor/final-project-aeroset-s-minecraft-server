@@ -1,0 +1,16 @@
+[
+    {
+        "name" : "All Users",
+        "module" : "Users",
+        "function" : "readUsers",
+        "args": [],
+        "expected" : ""
+    },
+    {
+        "name" : "User Specific",
+        "module" : "Users",
+        "function" : "readUserById",
+        "args": [1],
+        "expected" : ""
+    }
+]

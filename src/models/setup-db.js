@@ -20,6 +20,7 @@ if(! (SQL_USER && SQL_PASSWORD && SQL_DATABASE && SQL_HOSTNAME)){
 }
 
 const { Sequelize, DataTypes } = require("sequelize");
+
 const db = new Sequelize(SQL_DATABASE, SQL_USER, SQL_PASSWORD, {
     dialect: "mysql",
     host: SQL_HOSTNAME,
@@ -173,6 +174,7 @@ module.exports = {
     Assignment,
     initDB,
     initDBCallback,
+    db,
 }
 
 
