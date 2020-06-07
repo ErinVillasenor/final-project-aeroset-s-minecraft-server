@@ -67,7 +67,8 @@ typings/
 .yarn-integrity
 
 # dotenv environment variables file
-.env
+# commenting this out so the .env can be used during testing
+#.env
 .env.test
 .env.bat
 

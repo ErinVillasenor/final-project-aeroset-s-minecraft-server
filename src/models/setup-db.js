@@ -7,11 +7,11 @@
 
 // ---- CONFIGURATION FOR SQL DATABASE ----
 
-const SQL_USER = process.env.SQL_USER || null;
-const SQL_PASSWORD = process.env.SQL_PASSWORD || null;
-const SQL_DATABASE = process.env.SQL_DATABASE || null;
-const SQL_HOSTNAME = process.env.SQL_HOSTNAME || null;
-const SQL_PORT = process.env.SQL_PORT || 3306;
+const SQL_USER = process.env.DB_USER || null;
+const SQL_PASSWORD = process.env.DB_PASSWORD || null;
+const SQL_DATABASE = process.env.DB_DATABASE || null;
+const SQL_HOSTNAME = process.env.DB_HOSTNAME || null;
+const SQL_PORT = process.env.DB_PORT || 3306;
 
 if(! (SQL_USER && SQL_PASSWORD && SQL_DATABASE && SQL_HOSTNAME)){
     console.error("UNDEFINED DATABASE ENVIRONMENT VARIABLES!")

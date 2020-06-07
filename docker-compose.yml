@@ -1,0 +1,58 @@
+version: '3.7'
+services:
+  api:
+    build: .
+    image: cs493_finalproject
+    restart: always
+    ports:
+      - 8000:8000
+    environment:
+      DB_DATABASE: ${DB_DATABASE}
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_HOSTNAME: db
+      # Mongo DB
+      # DB_PORT: 27017
+      # MYSQL DB
+      DB_PORT: 3306
+    depends_on:
+      - db
+      - redis
+
+  db:
+    image: mysql:latest
+    restart: always
+    volumes:
+      - mysql-data:/var/lib/mysql
+      - ./data/:/docker-entrypoint-initdb.d
+    environment:
+      MYSQL_RANDOM_ROOT_PASSWORD: 'yes'
+      DB_DATABASE: ${DB_DATABASE}
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}
+
+#  db:
+#    image: mongo:latest
+#    restart: always
+#    volumes:
+#      - mongo-data:/data/db
+#      - ./db-init/01-db-init.js:/docker-entrypoint-initdb.d/01-db-init.js
+#    ports:
+#      - 27017:27017
+#    environment:
+#      MONGO_INITDB_ROOT_USERNAME: ${MONGO_ROOT_USER}
+#      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_ROOT_PASSWORD}
+#      DB_DATABASE: ${DB_DATABASE}
+#      DB_USER: ${DB_USER}
+#      DB_PASSWORD: ${DB_PASSWORD}
+
+  redis:
+    image: 'bitnami/redis:latest'
+    environment:
+      - ALLOW_EMPTY_PASSWORD=yes
+
+volumes:
+  mysql-data:
+    name: finalproject-mysql-data
+  mongo-data:
+    name: finalproject-mongo-data
