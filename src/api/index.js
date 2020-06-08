@@ -8,6 +8,8 @@
 
  const router = express.Router();
 
+router.use('/assignments', require('./assignments'));
+
  // ADD Paths Here!
  // router.use("/filename", require("filename"));
 
