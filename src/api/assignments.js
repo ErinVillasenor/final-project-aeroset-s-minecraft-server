@@ -55,6 +55,7 @@ router.get('/:id', async (req, res) => {
   }
 });
 
+//Needs Authorization implementation still 
 router.patch('/:id', async (req, res) => {
   if (req.body && (req.body.title || req.body.courseid || req.body.due || req.body.points)) {
     try {
@@ -80,6 +81,7 @@ router.patch('/:id', async (req, res) => {
   }
 });
 
+//Needs Authorization implementation still 
 router.delete('/:id', async (req, res) => {
   try {
     const result = await deleteAssignmentById(req.params.id);
