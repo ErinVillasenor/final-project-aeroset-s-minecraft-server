@@ -1,6 +1,8 @@
 //credit to Dr. Rob Hess at Oregon State University
 const redis = require('redis');
 
+const app = require('express').Router();
+
 const redisHost = process.env.REDIS_HOST || 'localhost';
 const redisPort = process.env.REDIS_PORT || '6379';
 
@@ -80,3 +82,5 @@ app.get('/', (req, res) => {
     timestamp: new Date().toString()
   });
 });
+
+module.exports = app;

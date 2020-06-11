@@ -4,4 +4,4 @@ COPY . .
 RUN npm install
 ENV PORT=8000
 EXPOSE ${PORT}
-CMD [ "npm", "test" ]
+CMD [ "npm", "start" ]
