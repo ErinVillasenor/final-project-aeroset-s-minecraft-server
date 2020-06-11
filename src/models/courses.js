@@ -37,7 +37,7 @@ async function readCourses(limit, offset){
 module.exports.readCourses = readCourses;
 
 async function readCoursesParams(limit, offset, subject, number, term, page, org){
-    var res;
+    var res = [];
     if(limit === undefined){
          if(subject === undefined && number === undefined && term === undefined){
           res = await Course.findAll();
