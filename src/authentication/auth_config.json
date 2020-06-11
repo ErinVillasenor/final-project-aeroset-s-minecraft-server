@@ -146,7 +146,7 @@
         },
         {
             "scheme": "POST",
-            "endpoint": "/assginments",
+            "endpoint": "/assignments",
             "role": "admin",
             "param": "",
             "body": "",
@@ -165,7 +165,7 @@
         },
         {
             "scheme": "PATCH",
-            "endpoint": "/assginments/:id",
+            "endpoint": "/assignments/:id",
             "role": "admin",
             "param": "",
             "body": "",
@@ -184,7 +184,7 @@
         },
         {
             "scheme": "DELETE",
-            "endpoint": "/assginments/:id",
+            "endpoint": "/assignments/:id",
             "role": "admin",
             "param": "",
             "body": "",
@@ -203,7 +203,7 @@
         },
         {
             "scheme": "GET",
-            "endpoint": "/assginments/:id/submissions",
+            "endpoint": "/assignments/:id/submissions",
             "role": "admin",
             "param": "",
             "body": "",

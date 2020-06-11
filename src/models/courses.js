@@ -213,6 +213,30 @@ async function readCourseById(id){
 
 module.exports.readCourseById = readCourseById;
 
+async function readCoursesByInstructorId(id){
+  const res = await User.findByPk(id,{
+    include: "instructor",
+  });
+  if(res)
+    return res["instructor"];
+  
+  return [];
+}
+
+module.exports.readCoursesByInstructorId = readCoursesByInstructorId;
+
+async function readCoursesByUserId(id){
+  const res = await User.findByPk(id,{
+    include: "course",
+  });
+  if(res)
+    return res["course"];
+  
+  return [];
+}
+
+module.exports.readCoursesByUserId = readCoursesByUserId;
+
 
 // CREATE
 async function createCourse(course){

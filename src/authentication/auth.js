@@ -258,12 +258,14 @@ async function checkForOwnership(req, blacklist_entry){
  */
 
 async function checkForAll(req, blacklist_entry){
-    if(blacklist_entry.override){
-        await overrides[blacklist_entry.override](req, blacklist_entry);
-    }else if(blacklist_entry.role === "admin"){
-        await checkForAdmin(req, blacklist_entry);
-    }else{
-        await checkForOwnership(req, blacklist_entry);
+    if(req.is_authenticated !== true){
+        if(blacklist_entry.override){
+            await overrides[blacklist_entry.override](req, blacklist_entry);
+        }else if(blacklist_entry.role === "admin"){
+            await checkForAdmin(req, blacklist_entry);
+        }else{
+            await checkForOwnership(req, blacklist_entry);
+        }
     }
 }
 

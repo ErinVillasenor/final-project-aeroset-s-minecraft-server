@@ -5,6 +5,7 @@ const { validateAgainstSchema } = require('../lib/validation');
  const { UserSchema, readUsers, readUserById, readUsersByRole, readUserByEmail, readStudentsByCourseId, readInstructorByCourseId,
   createUser, updateUserById,addStudentsToCourse, removeStudentsFromCourse,
    addCoursesToInstructor, deleteUserById} = require('../models/users');
+const { readCoursesByInstructorId, readCoursesByUserId } = require("../models/courses");
 
 app.post('/', async (req, res) => { //Still needs "Only an authenticated admin can add admin or instructor roles"
   if (validateAgainstSchema(req.body, UserSchema)) {
@@ -33,7 +34,14 @@ app.get('/:id', async (req, res, next) => {//requireAuthentication, async (req, 
     });
   } else {*/
     try {
-      const user = await readUserById(req.params.id);
+      let user = await readUserById(req.params.id);
+
+      if(user.role === "student"){
+        user.courses = await readCoursesByUserId(req.params.id);
+      }else{
+        user.courses = await readCoursesByInstructorId(req.params.id);
+      }
+
       if (user) {
         res.status(200).send(user);
       } else {
