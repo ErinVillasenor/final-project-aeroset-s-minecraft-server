@@ -87,7 +87,7 @@ async function getTrueUserId(req, res, next){
     const token = authHeaderParts[0] === 'Bearer' ? authHeaderParts[1] : null;
     if(token){
         let userid = idFromToken(token);
-        if(userid !== undefined){
+        if(userid !== undefined && userid !== null){
             req.trueUserId = userid;
         }else{
             req.is_authenticated = false;
@@ -129,7 +129,7 @@ async function authCheckSubmissionOwnership(req, blacklist_entry){
     
     //* The cool thing is with Sequelize you can check for "has" within an instance.
     if(req.trueUserId){
-        const assignment_res = await readAssignmentByIdIncludeCourse(id);
+        const assignment_res = await readAssignmentByIdIncludeCourse(assignment_id);
         if(assignment_res && assignment_res["course"]){
             let courseInstance = assignment_res["course"];
             
@@ -153,9 +153,40 @@ async function authCheckSubmissionOwnership(req, blacklist_entry){
     }
 }
 
+async function authCheckSubmissionInstructor(req, blacklist_entry){
+    // /assignments/:id/submissions
+    const assignment_id = req.params.id;
+
+    // Check for enrollment in the specified course.
+    
+    //* The cool thing is with Sequelize you can check for "has" within an instance.
+    if(req.trueUserId){
+        const assignment_res = await readAssignmentByIdIncludeCourse(assignment_id);
+        if(assignment_res && assignment_res["course"]){
+            let courseInstance = assignment_res["course"];
+            
+            // Now we can check if it has a student based on the id.
+            // First get student
+            let instructorInstance = await readUserById(req.trueUserId)
+
+            // Now use Sequelize function for has;
+            console.log("== Is authenticated by instructor id", courseInstance.instructorid, " and id ", instructorInstance.id);
+            if(courseInstance.instructorid === instructorInstance.id){
+                req.is_authenticated = true;
+            }else{
+                req.is_authenticated = false;
+            }
+        }else{
+            req.is_authenticated = false;
+        }
+    }else{
+        req.is_authenticated = false;
+    }
+}
 
 const overrides = {
     "student-submission" : authCheckSubmissionOwnership,
+    "instructor-submission" : authCheckSubmissionInstructor,
 }
 
 

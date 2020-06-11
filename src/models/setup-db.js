@@ -14,10 +14,19 @@ const SQL_HOSTNAME = process.env.DB_HOSTNAME || null;
 const SQL_PORT = process.env.DB_PORT || 3306;
 
 if(! (SQL_USER && SQL_PASSWORD && SQL_DATABASE && SQL_HOSTNAME)){
-    console.error("UNDEFINED DATABASE ENVIRONMENT VARIABLES!")
-    console.error("CONFIGURATION FAILURE!");
+    let missing = SQL_USER ? "" : "SQL_USER ";
+    missing = SQL_PASSWORD ? "" : "SQL_PASSWORD ";
+    missing = SQL_DATABASE ? "" : "SQL_DATABASE ";
+    missing = SQL_HOSTNAME ? "" : "SQL_HOSTNAME ";
+
+    console.error("== UNDEFINED DATABASE ENVIRONMENT VARIABLES!");
+    console.error("== Missing: " + missing);
+    console.error("== CONFIGURATION FAILURE!");
     process.exit(1);
 }
+
+console.log("== Connecting to: " + SQL_HOSTNAME);
+console.log("== With Port: " + SQL_PORT);
 
 const { Sequelize, DataTypes } = require("sequelize");
 

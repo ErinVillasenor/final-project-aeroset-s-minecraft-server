@@ -228,7 +228,7 @@ router.use('/submissions', express.static(`${__dirname}/uploads`)
 
 router.use('*', (req, res, next) => {
   res.status(404).send({
-	err: "Given Link Does not exist"
+	  err: "Given Link Does not exist"
   });
 });
 

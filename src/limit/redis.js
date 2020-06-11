@@ -8,8 +8,11 @@ const redisPort = process.env.REDIS_PORT || '6379';
 
 const redisClient = redis.createClient(redisPort, redisHost);
 
-const rateLimitWindowMS = 60000;
-const rateLimitNumRequests = 5;
+const rateLimitWindowMS = process.env.RATE_WINDOW || 60000;
+const rateLimitNumRequests = process.env.RATE_LIMIT || 5;
+
+console.log("== Rate Limiting Window Set to " + (rateLimitWindowMS / 1000) + " seconds.");
+console.log("== Rate Limit set to " + rateLimitNumRequests + " per window.");
 
 function getUserTokenBucket(ip) {
   return new Promise((resolve, reject) => {
@@ -66,7 +69,8 @@ async function applyRateLimit(req, res, next) {
       /* Save the token bucket back to Redis. */
       await saveUserTokenBucket(req.ip, tokenBucket);
       res.status(429).send({
-        error: "Too many requests per minute"
+        error: "Too many requests per minute",
+        token: tokenBucket
       });
     }
   } catch (err) {
@@ -77,7 +81,7 @@ async function applyRateLimit(req, res, next) {
 
 app.use(applyRateLimit);
 
-app.get('/', (req, res) => {
+app.get('/date', (req, res) => {
   res.status(200).send({
     timestamp: new Date().toString()
   });

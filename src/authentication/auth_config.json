@@ -210,6 +210,12 @@
             "res": null
         },
         {
+            "scheme": "GET",
+            "endpoint": "/assignments/:id/submissions",
+            "role": "instructor",
+            "override": "instructor-submission"
+        },
+        {
             "scheme": "POST",
             "endpoint": "/assignments/:id/submissions",
             "role": "student",

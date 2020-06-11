@@ -6,7 +6,7 @@ const { validateAgainstSchema } = require('../lib/validation');
   createUser, updateUserById,addStudentsToCourse, removeStudentsFromCourse,
    addCoursesToInstructor, deleteUserById} = require('../models/users');
 
-app.post('/users', async (req, res) => { //Still needs "Only an authenticated admin can add admin or instructor roles"
+app.post('/', async (req, res) => { //Still needs "Only an authenticated admin can add admin or instructor roles"
   if (validateAgainstSchema(req.body, UserSchema)) {
     try {
       const id = await createUser(req.body);
@@ -26,7 +26,7 @@ app.post('/users', async (req, res) => { //Still needs "Only an authenticated ad
   }
 });
 
-app.get('/users/:id', async (req, res, next) => {//requireAuthentication, async (req, res, next) => {
+app.get('/:id', async (req, res, next) => {//requireAuthentication, async (req, res, next) => {
 /*  if (req.user !== req.params.id) {
     res.status(403).send({
       error: "The request was not made by an authenticated User satisfying the authorization criteria described above."
@@ -48,7 +48,7 @@ app.get('/users/:id', async (req, res, next) => {//requireAuthentication, async 
 //  }
 });
 
-app.post('/users/login', async (req, res) => {
+app.post('/login', async (req, res) => {
   if (req.body && req.body.id && req.body.password) {
     try {
       const authenticated = await validateUser(

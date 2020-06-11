@@ -25,6 +25,10 @@ app.use(express.json());
 
 //------------------------------------------------
 
+// Rate Limiting
+const rl = require("./src/limit/redis");
+app.use("/", rl);
+
 // Authentication
 const auth = require("./src/authentication/auth.js");
 app.use("/", auth);
@@ -40,6 +44,8 @@ if(PRODUCTION_MODE !== false){
             });
         }
     });
+
+    next();
 }else{
     console.log("== WARNING: PRODUCTION_MODE is Turned OFF!");
     console.log("== Some paths may be overlooked by authentication!");
@@ -71,14 +77,37 @@ app.use("*", (req, res, next) => {
 // - MongoDB
 // - Stream Service (https://nodejs.org/api/stream.html)
 
-const { initDBCallback } = require("./src/models/setup-db");
+const { initDB } = require("./src/models/setup-db");
+const { forcePopulateDatabase } = require("./src/models/test-data");
 
 // Start Listening!
+async function startup(){
+    try{
+        await initDB();
+        await forcePopulateDatabase();
+        // https://medium.com/javascript-in-plain-english/converting-javascript-callbacks-to-promise-and-async-await-replacing-async-waterfall-method-with-3c8b7487e0b9
+        const listenPromise = new Promise((resolve, reject) =>{
+            try{
+                app.listen(NODE_PORT, () => {
+                    resolve();
+                });
+            }catch(err){
+                reject(err);
+            }
+        });
 
+        await listenPromise.then(() => {
+            console.log("== Listen Promise Resolved!");
+        });
+    
 
+    }catch(err){
+        console.error(err);
+        console.log("== FATAL ERROR: Shutting Down!");
+        process.exit(1);
+    }
+}
 
-initDBCallback(() => {
-    app.listen(NODE_PORT, () => {
-        console.log("== Listening on Port 8080");
-    });
+startup().then(() => {
+    console.log("== Listening on Port " + NODE_PORT);
 });

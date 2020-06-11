@@ -52,9 +52,16 @@ async function isPassword(pass, hash){
 // ------------- PUBLIC FUNCTIONS -------------- //
 
 function idFromToken(token){
-    let payload = jwt.verify(token, certificate);
-    if(payload.user !== undefined){
-        return payload.user;
+    try{
+        if(token){
+            let payload = jwt.verify(token, certificate);
+            if(payload.user !== undefined){
+                return payload.user;
+            }
+        }
+    }catch(err){
+        console.error(err);
+        console.error("== May be hackers");
     }
 
     return null;
@@ -93,7 +100,7 @@ module.exports.loginUser = loginUser;
 
 async function hashUserPassword(req, res, next){
     if(req.body && req.body.password){
-        req.body.password = hashPassword(req.body.password);
+        req.body.password = await hashPassword(req.body.password);
     }
     next();
 }

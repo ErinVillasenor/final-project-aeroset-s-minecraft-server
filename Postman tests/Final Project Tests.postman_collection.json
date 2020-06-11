@@ -16,7 +16,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "{{{{token}}}}",
+									"value": "{{token}}",
 									"type": "string"
 								}
 							]
@@ -24,9 +24,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{{{baseurl}}}}/assignments/:id",
+							"raw": "{{baseurl}}/assignments/:id",
 							"host": [
-								"{{{{baseurl}}}}"
+								"{{baseurl}}"
 							],
 							"path": [
 								"assignments",
@@ -50,7 +50,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "{{{{token}}}}",
+									"value": "{{token}}",
 									"type": "string"
 								}
 							]
@@ -58,9 +58,9 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{{{baseurl}}}}/assignments/:id",
+							"raw": "{{baseurl}}/assignments/:id",
 							"host": [
-								"{{{{baseurl}}}}"
+								"{{baseurl}}"
 							],
 							"path": [
 								"assignments",
@@ -84,7 +84,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "{{{{token}}}}",
+									"value": "{{token}}",
 									"type": "string"
 								}
 							]
@@ -101,9 +101,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{{{baseurl}}}}/assignments",
+							"raw": "{{baseurl}}/assignments",
 							"host": [
-								"{{{{baseurl}}}}"
+								"{{baseurl}}"
 							],
 							"path": [
 								"assignments"
@@ -120,7 +120,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "{{{{token}}}}",
+									"value": "{{token}}",
 									"type": "string"
 								}
 							]
@@ -137,9 +137,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{{{baseurl}}}}/assignments/:id",
+							"raw": "{{baseurl}}/assignments/:id",
 							"host": [
-								"{{{{baseurl}}}}"
+								"{{baseurl}}"
 							],
 							"path": [
 								"assignments",
@@ -169,7 +169,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "{{{{token}}}}",
+									"value": "{{token}}",
 									"type": "string"
 								}
 							]
@@ -177,9 +177,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{{{baseurl}}}}/users/:id",
+							"raw": "{{baseurl}}/users/:id",
 							"host": [
-								"{{{{baseurl}}}}"
+								"{{baseurl}}"
 							],
 							"path": [
 								"users",
@@ -203,7 +203,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "{{{{token}}}}",
+									"value": "{{token}}",
 									"type": "string"
 								}
 							]
@@ -211,9 +211,9 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{{{baseurl}}}}/users/:id",
+							"raw": "{{baseurl}}/users/:id",
 							"host": [
-								"{{{{baseurl}}}}"
+								"{{baseurl}}"
 							],
 							"path": [
 								"users",
@@ -243,7 +243,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "{{{{token}}}}",
+									"value": "{{token}}",
 									"type": "string"
 								}
 							]
@@ -266,9 +266,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{{{baseurl}}}}/assignments/:id/submissions",
+							"raw": "{{baseurl}}/assignments/:id/submissions",
 							"host": [
-								"{{{{baseurl}}}}"
+								"{{baseurl}}"
 							],
 							"path": [
 								"assignments",
@@ -293,7 +293,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "{{{{token}}}}",
+									"value": "{{token}}",
 									"type": "string"
 								}
 							]
@@ -301,9 +301,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{{{baseurl}}}}/assignments/:id/submissions",
+							"raw": "{{baseurl}}/assignments/:id/submissions",
 							"host": [
-								"{{{{baseurl}}}}"
+								"{{baseurl}}"
 							],
 							"path": [
 								"assignments",
@@ -337,7 +337,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "{{{{token}}}}",
+											"value": "{{token}}",
 											"type": "string"
 										}
 									]
@@ -345,9 +345,9 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{{{baseurl}}}}/courses/:id/students",
+									"raw": "{{baseurl}}/courses/:id/students",
 									"host": [
-										"{{{{baseurl}}}}"
+										"{{baseurl}}"
 									],
 									"path": [
 										"courses",
@@ -372,7 +372,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "{{{{token}}}}",
+											"value": "{{token}}",
 											"type": "string"
 										}
 									]
@@ -389,9 +389,9 @@
 									}
 								},
 								"url": {
-									"raw": "{{{{baseurl}}}}/courses/:id/students",
+									"raw": "{{baseurl}}/courses/:id/students",
 									"host": [
-										"{{{{baseurl}}}}"
+										"{{baseurl}}"
 									],
 									"path": [
 										"courses",
@@ -417,7 +417,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "{{{{token}}}}",
+											"value": "{{token}}",
 											"type": "string"
 										}
 									]
@@ -434,9 +434,9 @@
 									}
 								},
 								"url": {
-									"raw": "{{{{baseurl}}}}/courses/:id/students",
+									"raw": "{{baseurl}}/courses/:id/students",
 									"host": [
-										"{{{{baseurl}}}}"
+										"{{baseurl}}"
 									],
 									"path": [
 										"courses",
@@ -464,9 +464,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{{{baseurl}}}}/courses",
+							"raw": "{{baseurl}}/courses",
 							"host": [
-								"{{{{baseurl}}}}"
+								"{{baseurl}}"
 							],
 							"path": [
 								"courses"
@@ -483,7 +483,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "{{{{token}}}}",
+									"value": "{{token}}",
 									"type": "string"
 								}
 							]
@@ -491,9 +491,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{{{baseurl}}}}/courses/:id/roster",
+							"raw": "{{baseurl}}/courses/:id/roster",
 							"host": [
-								"{{{{baseurl}}}}"
+								"{{baseurl}}"
 							],
 							"path": [
 								"courses",
@@ -516,9 +516,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{{{baseurl}}}}/courses/:id",
+							"raw": "{{baseurl}}/courses/:id",
 							"host": [
-								"{{{{baseurl}}}}"
+								"{{baseurl}}"
 							],
 							"path": [
 								"courses",
@@ -542,7 +542,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "{{{{token}}}}",
+									"value": "{{token}}",
 									"type": "string"
 								}
 							]
@@ -550,9 +550,9 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{{{baseurl}}}}/courses/:id",
+							"raw": "{{baseurl}}/courses/:id",
 							"host": [
-								"{{{{baseurl}}}}"
+								"{{baseurl}}"
 							],
 							"path": [
 								"courses",
@@ -576,7 +576,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "{{{{token}}}}",
+									"value": "{{token}}",
 									"type": "string"
 								}
 							]
@@ -593,9 +593,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{{{baseurl}}}}/courses",
+							"raw": "{{baseurl}}/courses",
 							"host": [
-								"{{{{baseurl}}}}"
+								"{{baseurl}}"
 							],
 							"path": [
 								"courses"
@@ -612,7 +612,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "{{{{token}}}}",
+									"value": "{{token}}",
 									"type": "string"
 								}
 							]
@@ -629,9 +629,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{{{baseurl}}}}/courses/:id",
+							"raw": "{{baseurl}}/courses/:id",
 							"host": [
-								"{{{{baseurl}}}}"
+								"{{baseurl}}"
 							],
 							"path": [
 								"courses",
@@ -655,7 +655,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "{{{{token}}}}",
+									"value": "{{token}}",
 									"type": "string"
 								}
 							]
@@ -663,9 +663,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{{{baseurl}}}}/:id/assignments",
+							"raw": "{{baseurl}}/:id/assignments",
 							"host": [
-								"{{{{baseurl}}}}"
+								"{{baseurl}}"
 							],
 							"path": [
 								":id",
@@ -710,13 +710,13 @@
 	"variable": [
 		{
 			"id": "e6cca1d3-4586-49b0-97b1-6c0b635d91a9",
-			"key": "{{baseurl}}",
+			"key": "baseurl",
 			"value": "localhost:8000",
 			"type": "string"
 		},
 		{
 			"id": "057a7cdc-d221-4c54-ac52-d0139796d75f",
-			"key": "{{token}}",
+			"key": "token",
 			"value": "",
 			"type": "string"
 		}

@@ -109,3 +109,35 @@ async function testDatabase(){
 }
 
 module.exports.testDatabase = testDatabase;
+
+
+async function forcePopulateDatabase(){
+    try{
+        await db.drop();
+        await initDB();
+        // Order Matters Here!
+        // First Users The Only Independent Entity
+        users = await User.bulkCreate(data.users);
+        
+        // Depends On Users
+        courses = await Course.bulkCreate(data.courses);
+
+        // Depends On Courses
+        assignments = await Assignment.bulkCreate(data.assignments);
+
+        // Depends On Assignments
+        submissions = await Submission.bulkCreate(data.submissions);
+
+        // Add A Couple Students To the 2nd Course
+        let courseInst = await Course.findByPk(2);
+        let userInst = await User.findByPk(3)
+        await courseInst.addStudent(userInst);
+        userInst = await User.findByPk(5);
+        await courseInst.addStudent(userInst);
+    }catch(err){
+        console.log(err);
+        console.log("== Could not populate Database!")
+    }
+}
+
+module.exports.forcePopulateDatabase = forcePopulateDatabase;
