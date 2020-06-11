@@ -11,5 +11,5 @@
  // ADD Paths Here!
  // router.use("/filename", require("filename"));
 router.use('/users', require('./users'));
-
+router.use('/redis', require('./redis'));
  module.exports = router;
