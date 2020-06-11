@@ -119,4 +119,5 @@ temp/
 
 # Certificate Text File for signing
 cert.txt
+.cert.txt
 # Can I get a w00t for Self-Signed Certificates

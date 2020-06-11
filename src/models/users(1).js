@@ -130,10 +130,10 @@ async function updateUserById(id, user){
 
 module.exports.updateUserById = updateUserById;
 
-/*
+
 /*
  * Insert a new User into the DB.
- 
+ */
 exports.insertNewUser = async function (user) {
   const userToInsert = extractValidFields(user, UserSchema);
   console.log("  -- userToInsert:", userToInsert);
@@ -147,12 +147,11 @@ exports.insertNewUser = async function (user) {
   const result = await collection.insertOne(userToInsert);
   return result.insertedId;
 };
-*/
+
 
 /*
  * Fetch a user from the DB based on user ID.
- 
-
+ */
 exports.getUserById = async function (id){//, includePassword) {
   const db = getDBReference();
   const collection = db.collection('users');
@@ -167,7 +166,7 @@ exports.getUserById = async function (id){//, includePassword) {
     return results[0];
   }
 };
-*/
+
 /*exports.validateUser = async function(id, password) {
   const user = await exports.getUserById(id, true);
   return user &&

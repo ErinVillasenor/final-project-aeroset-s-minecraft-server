@@ -56,6 +56,16 @@ async function readAssignmentsByCourseId(id){
 
 module.exports.readAssignmentsByCourseId = readAssignmentsByCourseId;
 
+async function readAssignmentByIdIncludeCourse(id){
+    const res = await Assignment.findByPk(id, {
+        include: "course"
+    });
+
+    return res;
+}
+
+module.exports.readAssignmentByIdIncludeCourse = readAssignmentByIdIncludeCourse;
+
 // CREATE
 async function createAssignment(assignment){
     let insert = extractValidFields(assignment, AssignmentSchema);
