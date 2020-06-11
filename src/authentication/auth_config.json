@@ -1,0 +1,219 @@
+{
+    "whitelist":[
+        {
+            "scheme": "POST",
+            "endpoint": "/users/login"
+        },
+        {
+            "scheme": "GET",
+            "endpoint": "/courses"
+        },
+        {
+            "scheme": "GET",
+            "endpoint": "/courses/:id"
+        },
+        {
+            "scheme": "GET",
+            "endpoint": "/courses/:id/assignments"
+        },
+        {
+            "scheme": "GET",
+            "endpoint": "/assignments/:id"
+        }
+    ],
+    "blacklist":[
+        {
+            "scheme": "POST",
+            "endpoint":"/users",
+            "role": "admin",
+            "param": "",
+            "body": "",
+            "res": null
+        },
+        {
+            "scheme": "GET",
+            "endpoint":"/users/:id",
+            "role": "instructor",
+            "param": "id",
+            "body": "",
+            "res": {
+                "model": "users",
+                "match": "id"
+            }
+        },
+        {
+            "scheme": "GET",
+            "endpoint":"/users/:id",
+            "role": "student",
+            "param": "id",
+            "body": "",
+            "res": {
+                "model": "users",
+                "match": "id"
+            }
+        },
+        {
+            "scheme": "POST",
+            "endpoint":"/courses",
+            "role":"admin",
+            "param": "",
+            "body": "",
+            "res": null
+        },
+        {
+            "scheme": "PATCH",
+            "endpoint": "/courses/:id",
+            "role": "admin",
+            "param": "",
+            "body": "",
+            "res": null
+        },
+        {
+            "scheme": "PATCH",
+            "endpoint": "/courses/:id",
+            "role": "instructor",
+            "param": "id",
+            "body": "",
+            "res": {
+                "model": "courses",
+                "match": "instructorid"
+            }
+        },
+        {
+            "scheme": "DELETE",
+            "endpoint": "/courses/:id",
+            "role": "admin",
+            "param": "",
+            "body": "",
+            "res": null
+        },
+        {
+            "scheme": "GET",
+            "endpoint": "/courses/:id/students",
+            "role": "admin",
+            "param": "",
+            "body": "",
+            "res": null
+        },
+        {
+            "scheme": "GET",
+            "endpoint": "/courses/:id/students",
+            "role": "instructor",
+            "param": "id",
+            "body": "",
+            "res": {
+                "model": "courses",
+                "match": "instructorid"
+            }
+        },
+        {
+            "scheme": "POST",
+            "endpoint": "/courses/:id/students",
+            "role": "admin",
+            "param": "",
+            "body": "",
+            "res": null
+        },
+        {
+            "scheme": "POST",
+            "endpoint": "/courses/:id/students",
+            "role": "instructor",
+            "param": "id",
+            "body": "",
+            "res": {
+                "model": "courses",
+                "match": "instructorid"
+            }
+        },
+        {
+            "scheme": "GET",
+            "endpoint": "/courses/:id/roster",
+            "role": "admin",
+            "param": "",
+            "body": "",
+            "res": null
+        },
+        {
+            "scheme": "GET",
+            "endpoint": "/courses/:id/roster",
+            "role": "instructor",
+            "param": "id",
+            "body": "",
+            "res": {
+                "model": "courses",
+                "match": "instructorid"
+            }
+        },
+        {
+            "scheme": "POST",
+            "endpoint": "/assginments",
+            "role": "admin",
+            "param": "",
+            "body": "",
+            "res": null
+        },
+        {
+            "scheme": "POST",
+            "endpoint": "/assignments",
+            "role": "instructor",
+            "param": "",
+            "body": "courseId",
+            "res": {
+                "model": "courses",
+                "match": "instructorid"
+            }
+        },
+        {
+            "scheme": "PATCH",
+            "endpoint": "/assginments/:id",
+            "role": "admin",
+            "param": "",
+            "body": "",
+            "res": null
+        },
+        {
+            "scheme": "PATCH",
+            "endpoint": "/assignments/:id",
+            "role": "instructor",
+            "param": "id",
+            "body": "",
+            "res": {
+                "model": "assignments.courses",
+                "match": "instructorid"
+            }
+        },
+        {
+            "scheme": "DELETE",
+            "endpoint": "/assginments/:id",
+            "role": "admin",
+            "param": "",
+            "body": "",
+            "res": null
+        },
+        {
+            "scheme": "DELETE",
+            "endpoint": "/assignments/:id",
+            "role": "instructor",
+            "param": "id",
+            "body": "",
+            "res": {
+                "model": "assignments.courses",
+                "match": "instructorid"
+            }
+        },
+        {
+            "scheme": "GET",
+            "endpoint": "/assginments/:id/submissions",
+            "role": "admin",
+            "param": "",
+            "body": "",
+            "res": null
+        },
+        {
+            "scheme": "POST",
+            "endpoint": "/assignments/:id/submissions",
+            "role": "student",
+            "override": "student-submission"
+        }
+    ]
+}

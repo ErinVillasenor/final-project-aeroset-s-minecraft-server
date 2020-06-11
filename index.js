@@ -49,6 +49,22 @@ if(PRODUCTION_MODE !== false){
 const routes = require("./src/api/index.js");
 app.use("/", routes);
 
+// Error Handling Route
+app.use(function(err, req, res, next){
+    console.error(err);
+    res.status(500).send({
+        error: "Cannot complete operation right now. Try again later!",
+    })
+});
+
+/* Magical 404 */
+
+app.use("*", (req, res, next) => {
+    res.status(404).send({
+        error: "Route Not Found!",
+    });
+});
+
 // TURN OTHER BLOCKS ON HERE!
 // i.e
 // - SQL ./
