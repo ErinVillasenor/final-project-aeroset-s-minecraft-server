@@ -9,7 +9,7 @@
  const router = express.Router();
 
 router.use('/assignments', require('./assignments'));
-
+router.use('/users', require('./users'));
  // ADD Paths Here!
  // router.use("/filename", require("filename"));
 router.use('/users', require('./users'));
