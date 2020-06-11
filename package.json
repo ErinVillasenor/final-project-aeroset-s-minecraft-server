@@ -4,7 +4,8 @@
   "description": "A Backend API service for Tarpaulin",
   "main": "index.js",
   "scripts": {
-    "test": "node ./test.js"
+    "test": "node ./test.js",
+    "start": "node ./index.js"
   },
   "repository": {
     "type": "git",

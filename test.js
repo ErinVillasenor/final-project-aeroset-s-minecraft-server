@@ -17,7 +17,8 @@ function sleep(ms) {
 
 async function startTests(){
     // Setup Stuff
-    await populateDatabase(); 
+    console.log("Skipping javascript DB population.");
+    //await populateDatabase(); 
 
     console.log("\n\n=-= When the server has started.\n\t\t Type a yes like response");
     await sleep(5000);
