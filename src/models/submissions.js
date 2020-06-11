@@ -33,6 +33,7 @@ async function readSubmissions(limit, offset){
 
 module.exports.readSubmissions = readSubmissions;
 
+
 async function readSubmissionById(id){
     const res = await Submission.findByPk(id);
 
@@ -51,6 +52,78 @@ async function readSubmissionsByAssignmentId(assignmentid){
 }
 
 module.exports.readSubmissionsByAssignmentId = readSubmissionsByAssignmentId;
+
+async function readSubmissionsByAID(limit, offset, assignmentid, sid, page, org){
+  var res = [];
+  if (limit === undefined){
+      if (sid === undefined){
+        res = await Submission.findAll({
+          where: {
+               assignmentid: assignmentid
+          }
+        });
+      }
+      else if(sid !== undefined){
+        res = await Submission.findAll({
+          where: {
+               assignmentid: assignmentid,
+               studentid: sid
+          }
+        });
+      }
+      if(org == 0){ 
+        try{
+          const count = res.length;
+          //Code block format taken from CS 493 Spring term pagination examples
+          const pageSize = 2;
+          const lastPage = Math.ceil(count / pageSize);
+          page = page > lastPage ? lastPage : page;
+          page = page < 1 ? 1 : page;
+          const Poffset = (page - 1) * pageSize;
+          //end of block   
+          const results = await readSubmissionsByAID(pageSize, Poffset, assignmentid, sid, page, 1);      
+          //Return format taken from CS 493 Spring term pagination examples
+          return {
+            Submissions: results,
+            page: page,
+            totalPages: lastPage,
+            pageSize: pageSize,
+            count: count
+          };  
+        } catch (err) {
+           console.log("ERROR IN SECOND HALF OF GET");
+           console.log(err);
+           return res;
+        }        
+      }
+      return res;
+  } else{
+      if(sid === undefined){
+        res = await Submission.findAll({
+          limit: limit,
+          offset: offset || 0,
+          where: {
+             assignmentid: assignmentid
+          }
+        });
+      }
+      else if(sid !== undefined){
+        res = await Submission.findAll({
+          limit: limit,
+          offset: offset || 0,
+          where: {
+               assignmentid: assignmentid,
+               studentid: sid
+          }  
+        });
+      }
+      return res;
+    }
+}
+
+module.exports.readSubmissionsByAID = readSubmissionsByAID;
+
+
 
 // Create
 async function createSubmission(submission){
