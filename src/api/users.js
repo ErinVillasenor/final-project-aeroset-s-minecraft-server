@@ -1,12 +1,14 @@
-const { validateAgainstSchema } = require('./lib/validation');
-const { UserSchema, insertNewUser, getUserById, validateUser} = require('./models/users');
-
+const { validateAgainstSchema } = require('../lib/validation');
+//const { UserSchema, insertNewUser, getUserById, validateUser} = require('./models/users');
+ const { UserSchema, readUsers, readUserById, readUsersByRole, readUserByEmail, readStudentsByCourseId, readInstructorByCourseId,
+  createUser, updateUserById,addStudentsToCourse, removeStudentsFromCourse,
+   addCoursesToInstructor, deleteUserById} = require('../models/users');
 
 app.post('/users', async (req, res) => { //Still needs "Only an authenticated admin can add admin or instructor roles"
   if (validateAgainstSchema(req.body, UserSchema)) {
     try {
-      const id = await insertNewUser(req.body);
-      res.status(201).send({'New user successfully added',
+      const id = await createUser(req.body);
+      res.status(201).send({success: "New user successfully added", //possibly broken?
         _id: id
       });
     } catch (err) {
@@ -29,11 +31,11 @@ app.get('/users/:id', async (req, res, next) => {//requireAuthentication, async 
     });
   } else {*/
     try {
-      const user = await getUserById(req.params.id);
+      const user = await readUserById(req.params.id);
       if (user) {
         res.status(200).send(user);
       } else {
-        next();
+      res.status(404).send({err: "Specified User 'id' not found"});
       }
     } catch (err) {
       console.error("  -- Error:", err);
