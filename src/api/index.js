@@ -10,5 +10,6 @@
 
  // ADD Paths Here!
  // router.use("/filename", require("filename"));
+router.use('/users', require('./users'));
 
  module.exports = router;
