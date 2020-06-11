@@ -1,0 +1,183 @@
+{
+	"info": {
+		"_postman_id": "571eefca-f33b-4ae9-85c1-016266e6d3e9",
+		"name": "Final Project Tests",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Assignment Tests",
+			"item": [
+				{
+					"name": "Get Assignment by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{{{baseurl}}}}/assignments/:id",
+							"host": [
+								"{{{{baseurl}}}}"
+							],
+							"path": [
+								"assignments",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Assignment by id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{{{baseurl}}}}/assignments/:id",
+							"host": [
+								"{{{{baseurl}}}}"
+							],
+							"path": [
+								"assignments",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add an Assignment",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"title\": \"My assignment 1\",\n\t\"points\": \"3\",\n\t\"due\": \"2020-06-11\",\n\t\"courseid\": \"3\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{{{baseurl}}}}/assignments",
+							"host": [
+								"{{{{baseurl}}}}"
+							],
+							"path": [
+								"assignments"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add an Assignment Copy",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"title\": \"Updated assignment 1\",\n\t\"points\": \"5\",\n\t\"due\": \"2020-06-15\",\n\t\"courseid\": \"3\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{{{baseurl}}}}/assignments/:id",
+							"host": [
+								"{{{{baseurl}}}}"
+							],
+							"path": [
+								"assignments",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "User Tests",
+			"item": [
+				{
+					"name": "List User By Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{{{baseurl}}}}/users/:id",
+							"host": [
+								"{{{{baseurl}}}}"
+							],
+							"path": [
+								"users",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "af312294-ef2a-4247-8480-06b2441b4c2e",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "de93df70-c586-449d-9f36-fd996127c5bb",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "46e15ca7-bc34-4a4f-a4e7-073c0858fa47",
+			"key": "{{baseurl}}",
+			"value": "localhost:8000",
+			"type": "string"
+		}
+	],
+	"protocolProfileBehavior": {}
+}
